@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Nuestro Primer Año 💚</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f3d2e, #1f7a5b);
+    color: #e8fff5;
+}
+
+/* ================= CINEMÁTICA ================= */
+.cinematic {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px;
+}
+
+.cinematic h1 {
+    font-size: 2.5rem;
+    animation: fadeIn 2s forwards;
+}
+
+.cinematic p {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    animation: fadeIn 2s forwards;
+    animation-delay: 1.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================= TARJETAS ================= */
+.section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.card {
+    background: rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+/* ================= MODAL ================= */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #145a3a, #1f7a5b);
+    border-radius: 20px;
+    max-width: 500px;
+    width: 90%;
+    padding: 25px;
+    position: relative;
+    animation: zoom 0.4s;
+}
+
+@keyframes zoom {
+    from { transform: scale(0.7); }
+    to { transform: scale(1); }
+}
+
+/* BOTÓN CERRAR */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* IMAGEN DEL MES */
+.modal img {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+/* TEXTO DEL MES */
+.modal h2 {
+    margin-bottom: 10px;
+}
+
+footer {
+    padding: 30px;
+    text-align: center;
+}
+/* ================= EFECTO PELÍCULA ================= */
+body.fade-out {
+    animation: fadeBlack 1.5s forwards;
+}
+
+@keyframes fadeBlack {
+    to {
+        background: black;
+        color: black;
+    }
+}
+
+/* ================= TEXTO TYPEWRITER ================= */
+#typewriter::after {
+    content: "|";
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+/* ================= BOTÓN SECRETO ================= */
+#secretBtn {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: #e8fff5;
+    font-size: 1.5rem;
+    padding: 12px 16px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none; /* OCULTO */
+}
+/* ================= PANTALLA NEGRA CINEMÁTICA ================= */
+#blackScreen {
+    position: fixed;
+    inset: 0;
+    background: black;
+    color: white;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 3000;
+    font-size: 1.8rem;
+    padding: 30px;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+#blackScreen.show {
+    display: flex;
+    opacity: 1;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================================================= -->
+<!-- 🎬 INTRO CINEMÁTICA TIPO PELÍCULA -->
+<!-- ================================================= -->
+<section class="cinematic">
+    <div>
+        <!-- ESTE TEXTO SE ESCRIBE SOLO -->
+        <h1 id="typewriter"></h1>
+
+        <!-- DESCRIPCIÓN -->
+        <p id="subtitle"></p>
+    </div>
+</section>
+
+
+<!-- 📅 MESES -->
+<section class="section">
+<h2>Nuestros Meses</h2>
+
+<div class="grid">
+
+<!-- Cada tarjeta llama a su modal -->
+<div class="card" onclick="abrirModal(1)">
+    <h3>Mes 1</h3>
+    <p>El comienzo de todo 💫</p>
+</div>
+
+<div class="card" onclick="abrirModal(2)">
+    <h3>Mes 2</h3>
+    <p>Primeras risas juntos 💕</p>
+</div>
+
+<div class="card" onclick="abrirModal(3)">
+    <h3>Mes 3</h3>
+    <p>Momentos inolvidables 🌿</p>
+</div>
+
+<div class="card" onclick="abrirModal(4)">
+    <h3>Mes 4</h3>
+    <p>Ya eras mi lugar seguro</p>
+</div>
+
+<div class="card" onclick="abrirModal(5)">
+    <h3>Mes 5</h3>
+    <p>Amor creciendo sin miedo</p>
+</div>
+
+<div class="card" onclick="abrirModal(6)">
+    <h3>Mes 6</h3>
+    <p>La mitad del camino 💚</p>
+</div>
+
+<div class="card" onclick="abrirModal(7)">
+    <h3>Mes 7</h3>
+    <p>Más fuertes que nunca</p>
+</div>
+
+<div class="card" onclick="abrirModal(8)">
+    <h3>Mes 8</h3>
+    <p>Recuerdos que viven en mí</p>
+</div>
+
+<div class="card" onclick="abrirModal(9)">
+    <h3>Mes 9</h3>
+    <p>El amor ya sabía quedarse</p>
+</div>
+
+<div class="card" onclick="abrirModal(10)">
+    <h3>Mes 10</h3>
+    <p>Sonrisas compartidas ✨</p>
+</div>
+
+<div class="card" onclick="abrirModal(11)">
+    <h3>Mes 11</h3>
+    <p>Casi un año juntos</p>
+</div>
+
+<div class="card" onclick="abrirModal(12)">
+    <h3>Mes 12</h3>
+    <p>Nuestro primer año 💍</p>
+</div>
+
+</section>
+
+<!-- ================= MODAL ÚNICO ================= -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="close" onclick="cerrarModal()">✖</span>
+
+        <!-- IMAGEN (SE CAMBIA CON JS) -->
+        <img id="modal-img" src="" alt="Foto del recuerdo">
+
+        <!-- TÍTULO -->
+        <h2 id="modal-title"></h2>
+
+        <!-- MENSAJE -->
+        <p id="modal-text"></p>
+    </div>
+</div>
+
+<footer>
+Hecho con amor 💚
+</footer>
+
+<script>
+/* ================================================= */
+/* 💚 CONTENIDO DE CADA MES – EDITA AQUÍ SIN MIEDO 💚 */
+/* ================================================= */
+const meses = {
+    1: {
+        titulo: "Mes 1 💫",
+        texto: "Aquí comenzó nuestra historia, cuando sin buscarlo, mi corazón ya te había elegido.",
+        imagen: "mes1.jpg"
+    },
+    2: {
+        titulo: "Mes 2 💕",
+        texto: "Tus risas empezaron a convertirse en mi lugar favorito.",
+        imagen: "https://wallpapers.com/images/featured/pareja-de-anime-xyev5mudcvnzo825.jpg"
+    },
+    3: {
+        titulo: "Mes 3 🌿",
+        texto: "Cada día contigo me enseñaba a amar mejor.",
+        imagen: "https://media.istockphoto.com/id/1201821268/es/vector/un-chico-besando-la-mejilla-de-una-chica.jpg?s=612x612&w=0&k=20&c=8FhbvCpv5IAhw_l4dmG1S8TLVxiu1D3AakAx4M5G_Is="
+    },
+    4: {
+        titulo: "Mes 4 🌸",
+        texto: "Sin darme cuenta, ya eras parte de mi hogar.",
+        imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn7ums5SLfvEQDfePq7qZ9W70b_rNVB9SeNQ&s"
+    },
+    5: {
+        titulo: "Mes 5 💖",
+        texto: "Nuestro amor crecía fuerte, sincero y real.",
+        imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGSKPpRFvDaSgTiUJ9WSt2rejSqsftgRiJQg&s"
+    },
+    6: {
+        titulo: "Mes 6 💚",
+        texto: "La mitad del camino, y aún así, sentía que apenas comenzábamos.",
+        imagen: "https://f.rpp-noticias.io/2020/02/13/171017_900786.jpg?width=1020&quality=80"
+    },
+    7: {
+        titulo: "Mes 7 ✨",
+        texto: "Cada obstáculo solo nos hacía más fuertes.",
+        imagen: "https://i.pinimg.com/originals/5b/8c/74/5b8c7478f3ae0071af79cacb75ecff4b.png"
+    },
+    8: {
+        titulo: "Mes 8 🌙",
+        texto: "Los recuerdos contigo se volvieron eternos.",
+        imagen: "https://heraldodemexico.com.mx/u/fotografias/m/2024/12/22/f414x232-1061227_1074966_5050.jpg"
+    },
+    9: {
+        titulo: "Mes 9 🌹",
+        texto: "El amor ya no dudaba, ya sabía quedarse.",
+        imagen: "https://alfabetajuega.com/hero/2024/08/estas-son-algunas-de-las-parejas-mas-iconicas-del-anime.jpg?width=768&aspect_ratio=16:9&format=nowebp"
+    },
+    10: {
+        titulo: "Mes 10 💞",
+        texto: "Compartir la vida contigo era lo más bonito.",
+        imagen: "https://i.pinimg.com/originals/09/36/ce/0936ce7f4b9f6613c3cb62790a153a47.jpg"
+    },
+    11: {
+        titulo: "Mes 11 🌷",
+        texto: "Cada día estaba más seguro de que eras tú.",
+        imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkRgEWxeAtuPpltWTsO1SZC6SU41CX-Z0a5Q&s"
+    },
+    12: {
+        titulo: "Mes 12 💍",
+        texto: "Nuestro primer año juntos, y toda una vida por delante.",
+        imagen: "https://e0.pxfuel.com/wallpapers/266/767/desktop-wallpaper-hoshi-no-ouji-kun-wedding-cg-couple-game-kiss-sky.jpg"
+    }
+};
+
+/* ================= ABRIR MODAL ================= */
+function abrirModal(mes) {
+    document.getElementById("modal-title").innerText = meses[mes].titulo;
+    document.getElementById("modal-text").innerText = meses[mes].texto;
+    document.getElementById("modal-img").src = meses[mes].imagen;
+    document.getElementById("modal").style.display = "flex";
+}
+
+/* ================= CERRAR MODAL ================= */
+function cerrarModal() {
+    document.getElementById("modal").style.display = "none";
+}
+</script>
+<!-- ================================================= -->
+<!-- 💌 MENSAJE FINAL -->
+<!-- ================================================= -->
+<div class="modal" id="finalModal">
+    <div class="modal-content">
+        <span class="close" onclick="cerrarFinal()">✖</span>
+        <h2>Para ti 💚</h2>
+        <p id="finalText"></p>
+    </div>
+</div>
+
+<script>
+/* ================================================= */
+/* ✍️ TEXTO ESCRIBIÉNDOSE SOLO (EDITA AQUÍ) */
+/* ================================================= */
+const tituloTexto = "Un año contigo 💚";
+const subtituloTexto = "Una historia escrita con amor, risas y momentos que vivirán por siempre.";
+
+let i = 0;
+let j = 0;
+
+/* ESCRIBIR TÍTULO */
+function escribirTitulo() {
+    if (i < tituloTexto.length) {
+        document.getElementById("typewriter").innerHTML += tituloTexto.charAt(i);
+        i++;
+        setTimeout(escribirTitulo, 100);
+    } else {
+        setTimeout(escribirSubtitulo, 800);
+    }
+}
+
+/* ESCRIBIR SUBTÍTULO */
+function escribirSubtitulo() {
+    if (j < subtituloTexto.length) {
+        document.getElementById("subtitle").innerHTML += subtituloTexto.charAt(j);
+        j++;
+        setTimeout(escribirSubtitulo, 40);
+    }
+}
+
+window.onload = escribirTitulo;
+</script>
+<!-- ================================================= -->
+<!-- 🎁 BOTÓN SECRETO (APARECE DESPUÉS) -->
+<!-- ================================================= -->
+<button id="secretBtn" onclick="mostrarFinal()">
+    💚
+</button>
+
+<script>
+/* MOSTRAR BOTÓN SECRETO DESPUÉS DE 10 SEGUNDOS */
+setTimeout(() => {
+    document.getElementById("secretBtn").style.display = "block";
+}, 10000);
+</script>
+<script>
+/* ================================================= */
+/* 💌 MENSAJE FINAL ESCRIBIÉNDOSE SOLO */
+/* ================================================= */
+const mensajeFinal = 
+"Este primer año contigo me enseñó que el amor verdadero sí existe. " +
+"Gracias por cada sonrisa, cada apoyo y cada momento. " +
+"No importa el tiempo, mientras sea contigo." +
+"Realmente es lindo poder compartir este año lleno de felicidad y risas."+
+"No sabes lo que realmente aprecio esta relacion, no sabes como te aprecio." +
+"No sabes cuanto te amo mi amor <3." +
+"Gracias por formar parte de mi vida y ser alguien que realmente me comprende demasiado."+
+"Te agradezco por cada momento que me regalaste a tu lado, Feliz primer año mi amor <3. 💚"
+
+let k = 0;
+
+function mostrarFinal() {
+    const musica = document.getElementById("finalMusic");
+
+    // Transición tipo película (pantalla a negro)
+    document.body.classList.add("fade-out");
+
+    setTimeout(() => {
+        document.body.classList.remove("fade-out");
+
+        // Mostrar modal final
+        document.getElementById("finalModal").style.display = "flex";
+
+        // Reiniciar texto y música
+        document.getElementById("finalText").innerHTML = "";
+        k = 0;
+
+        // 🎵 INICIAR MÚSICA AUTOMÁTICAMENTE
+        musica.currentTime = 0;
+        musica.play();
+
+        // Escribir texto letra por letra
+        escribirFinal();
+    }, 1500);
+    function mostrarFinal() {
+    // Primero: pantalla negra tipo película
+    mostrarPantallaNegra(() => {
+
+        ocultarPantallaNegra();
+
+        // Mostrar mensaje final
+        document.getElementById("finalModal").style.display = "flex";
+
+        // Música final
+        const musica = document.getElementById("finalMusic");
+        musica.currentTime = 0;
+        musica.volume = 0.6;
+        musica.play();
+
+        // Texto escribiéndose solo
+        document.getElementById("finalText").innerHTML = "";
+        k = 0;
+        escribirFinal();
+    });
+}
+}
+function escribirFinal() {
+    if (k < mensajeFinal.length) {
+        document.getElementById("finalText").innerHTML += mensajeFinal.charAt(k);
+        k++;
+        setTimeout(escribirFinal, 45);
+    }
+}
+function cerrarFinal() {
+    const musica = document.getElementById("finalMusic");
+
+    document.getElementById("finalModal").style.display = "none";
+    document.getElementById("finalText").innerHTML = "";
+    k = 0;
+
+    // Detener música
+    musica.pause();
+    musica.currentTime = 0;
+}
+</script>
+
+</script>
+<!-- ================================================= -->
+<!-- 🎵 MÚSICA FINAL (SE REPRODUCE AUTOMÁTICAMENTE) -->
+<!-- ================================================= -->
+<audio id="finalMusic">
+    <source src="Akaza's Love Theme Demon Slayer_ Infinity Castle OST Cover.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio.
+</audio>
+
+<!-- ================================================= -->
+<!-- 🖤 PANTALLA NEGRA TIPO PELÍCULA -->
+<!-- ================================================= -->
+<div id="blackScreen">
+    <p id="blackText"></p>
+</div>
+
+<script>
+/* ================================================= */
+/* 🖤 TEXTO FINAL EN PANTALLA NEGRA (EDITA AQUÍ) */
+/* ================================================= */
+const textoNegro = 
+"Y así terminó nuestro primer capítulo...\n\n" +
+"Pero no nuestra historia 💚";
+
+let n = 0;
+
+/* MOSTRAR PANTALLA NEGRA */
+function mostrarPantallaNegra(callback) {
+    const pantalla = document.getElementById("blackScreen");
+    const texto = document.getElementById("blackText");
+
+    texto.innerHTML = "";
+    n = 0;
+
+    pantalla.style.display = "flex";
+    setTimeout(() => pantalla.classList.add("show"), 50);
+
+    function escribir() {
+        if (n < textoNegro.length) {
+            texto.innerHTML += textoNegro.charAt(n) === "\n" ? "<br>" : textoNegro.charAt(n);
+            n++;
+            setTimeout(escribir, 70);
+        } else if (callback) {
+            setTimeout(callback, 1500);
+        }
+    }
+
+    escribir();
+}
+
+/* OCULTAR PANTALLA NEGRA */
+function ocultarPantallaNegra() {
+    const pantalla = document.getElementById("blackScreen");
+    pantalla.classList.remove("show");
+    setTimeout(() => pantalla.style.display = "none", 1500);
+}
+</script>
+
+</body>
+</html>
